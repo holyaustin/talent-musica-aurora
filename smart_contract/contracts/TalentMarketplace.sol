@@ -29,7 +29,7 @@ contract Talent is ERC721URIStorage {
       uint256 tokenId;
       address usersAdd;
       address ownerAdd;
-      //bool haveWatched;
+      bool haveWatched;
     }
 
     event MarketItemCreated (
@@ -43,12 +43,18 @@ contract Talent is ERC721URIStorage {
     event ViewCreated (
       uint256 indexed tokenId,
       address usersAdd,
-      address ownerAdd
-      //bool haveWatched
+      address ownerAdd,
+      bool haveWatched
     );
 
     constructor() ERC721("Talent Musica", "tmus") {
       owner = payable(msg.sender);
+    }
+
+     modifier onlyOwner() {
+        require(msg.sender == owner, "Not owner");
+
+        _;
     }
 
      /* Mints new talent and lists it in the marketplace */
@@ -94,27 +100,41 @@ contract Talent is ERC721URIStorage {
     }
 
     /* Report infringement of music item */
-    function reportItem(
-      uint256 tokenId
-      ) public onlyOwner {
-      idToMarketItem[tokenId].infringement = true;
-       
+    function reportItem( uint256 tokenId ) public onlyOwner {
+
+     address payable _artiste = idToMarketItem[tokenId].artiste;
+     bool _contact = idToMarketItem[tokenId].contacted;
+    console.log(_artiste );
+    console.log(_contact );
+        idToMarketItem[tokenId].tokenId =  tokenId;
+        idToMarketItem[tokenId].artiste =  _artiste;
+        idToMarketItem[tokenId].owner = payable(address(this));
+        idToMarketItem[tokenId].contacted  = _contact;
+        idToMarketItem[tokenId].infringement  = true;
     }
 
-    /* Returns all music talent */
-    function fetchMarketItems() public view returns (MarketItem[] memory) {
-      uint itemCount = _tokenIds.current();
-      uint unsoldItemCount = _tokenIds.current();
+    /* Returns all valid music talent */
+    function fetchAllValidMarketItems() public view returns (MarketItem[] memory) {
+      uint totalItemCount = _tokenIds.current();
+      //uint itemCount = 0;
       uint currentIndex = 0;
 
-      MarketItem[] memory items = new MarketItem[](unsoldItemCount);
-      for (uint i = 0; i < itemCount; i++) {
-        if (idToMarketItem[i + 1].owner == address(this)) {
+    /*
+      for (uint i = 0; i < totalItemCount; i++) {
+        if (idToMarketItem[i + 1].infringement == false) {
+          itemCount += 1;
+        }
+      }
+*/
+      MarketItem[] memory items = new MarketItem[](totalItemCount);
+      for (uint i = 0; i < totalItemCount; i++) {
+        if (idToMarketItem[i + 1].owner ==  address(this)) {
           uint currentId = i + 1;
           MarketItem storage currentItem = idToMarketItem[currentId];
           items[currentIndex] = currentItem;
           currentIndex += 1;
         }
+       
       }
       return items;
     }
@@ -127,7 +147,7 @@ contract Talent is ERC721URIStorage {
 
       Watched[] memory items = new Watched[](unsoldItemCount);
       for (uint i = 0; i < itemCount; i++) {
-        if ((idToViewItem[i + 1].ownerAdd == address(this)) && (idToViewItem[i + 1].infringement == false)) {
+        if (idToViewItem[i + 1].haveWatched == true) {
           uint currentId = i + 1;
          Watched storage currentItem = idToViewItem[currentId];
           items[currentIndex] = currentItem;
@@ -174,10 +194,21 @@ contract Talent is ERC721URIStorage {
     function getMusicViews(uint256 tokenId) public view returns (uint256) {
       uint totalItemCount = _itemView.current();
       uint itemCount = 0;
+      uint currentIndex = 0;
 
       for (uint i = 0; i < totalItemCount; i++) {
-        if (idToViewItem[i + 1].tokenId == tokenId) {
+        if (idToViewItem[i + 1].tokenId == tokenId && idToViewItem[i + 1].haveWatched == true ) {
           itemCount += 1;
+        }
+      }
+
+    Watched[] memory items = new Watched[](itemCount);
+      for (uint i = 0; i < totalItemCount; i++) {
+        if (idToViewItem[i + 1].tokenId == tokenId) {
+          uint currentId = i + 1;
+          Watched storage currentItem = idToViewItem[currentId];
+          items[currentIndex] = currentItem;
+          currentIndex += 1;
         }
       }
     
@@ -190,13 +221,15 @@ contract Talent is ERC721URIStorage {
       idToViewItem[tokenId] =  Watched(
         tokenId,
         msg.sender,
-        address(this)
+        address(this),
+        true
       );
 
       emit ViewCreated(
         tokenId,
         msg.sender,
-       address(this)
+       address(this),
+       true
       );
       _itemView.increment();
     }

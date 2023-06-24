@@ -13,18 +13,16 @@ const injected = injectedModule();
 
 const modules = [coinbaseWalletSdk, walletConnect, injected];
 
-const TESTNET_RPC_URL = "https://rpc.testnet.mantle.xyz/";
-
-
+const TESTNET_RPC_URL = "https://testnet.aurora.dev";
 
 const onboard = Onboard({
   wallets: modules, // created in previous step
   chains: [
     {
       id: "0x97",
-      token: "BNB",
+      token: "ETH",
       namespace: "evm",
-      label: "BSC Testnet",
+      label: "Aurora Testnet",
       rpcUrl: TESTNET_RPC_URL
     },
   ],
@@ -40,12 +38,8 @@ const onboard = Onboard({
   }
 });
 
-
-
 const Welcome = () => {
   const [account, setAccount] = useState();
-
-
 
   const connectWallet2 = async () => {
     try {
@@ -74,8 +68,7 @@ const Welcome = () => {
 
           <br />
           <MoralisLogin />
-          
-       
+
           {/** {!currentAccount && ( )}
           <button
             type="button"

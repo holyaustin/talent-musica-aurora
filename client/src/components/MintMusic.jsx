@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-shadow */
@@ -40,17 +41,6 @@ const MintMusic = () => {
     setImageView("");
     setMetaDataURl("");
     setTxURL("");
-  };
-
-  const PolybaseDB = async (metaData) => { // use this info for transak package
-    console.log("Inside Polybase");
-    console.log("db is ", db);
-
-    const tname = metaData.data.name;
-    console.log("name field is", tname);
-    const tcontact = metaData.data.properties.contact;
-    console.log("twitter field is", tcontact);
-    await db.collection("publication").create([metaData.url, tname, tcontact]);
   };
 
   const uploadNFTContent = async (inputFile) => {
@@ -116,7 +106,7 @@ const MintMusic = () => {
     // 1. upload NFT content via NFT.storage
     const metaData = await uploadNFTContent(uploadedFile);
     // save to PolyBase
-    await PolybaseDB(metaData);
+    // await PolybaseDB(metaData);
     // 2. Mint a NFT token on BSC
     const mintNFTTx = await sendTxToBlockchain(metaData);
 

@@ -28,7 +28,7 @@ const Services = () => (
           <br /> <br />
         </h1>
         <p className="my-2 text-white font-light md:w-11/12 w-11/12 text-2xl text-justify">
-          Join the movement to becoming the next big muiscal star witht he powere of blockchain music. Record a short video of you performing and upload it here. Alternatively, you can use sthe live stream page to record you performance live.
+          Join the movement to becoming the next big muiscal star witht he powere of blockchain music. Record a short video of you performing and upload it here. Alternatively, you can use the live stream page to record you performance live.
         </p>
         <br />
         <div className="md:flex-[0.8] flex-initial justify-left items-center">
@@ -68,6 +68,18 @@ const Services = () => (
           title="You get contacted on your twitter handle"
           icon={<RiHeart2Fill fontSize={21} className="text-blue-700" />}
           subtitle="You get contacted on your twitter handle"
+        />
+        <ServiceCard
+          color="bg-[#000000]"
+          title="You get contacted on your twitter handle"
+          icon={<RiHeart2Fill fontSize={21} className="text-blue-700" />}
+          subtitle="You get a record deal"
+        />
+        <ServiceCard
+          color="bg-[#000000]"
+          title="You get contacted on your twitter handle"
+          icon={<RiHeart2Fill fontSize={21} className="text-blue-700" />}
+          subtitle="creators work are protected"
         />
       </div>
     </div>

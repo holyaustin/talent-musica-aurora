@@ -17,7 +17,7 @@ const Footer = () => (
     <div className="sm:w-[90%] w-full h-[0.25px] bg-gray-400 mt-5 " />
 
     <div className="sm:w-[90%] w-full items-center mt-10">
-      <p className="text-white text-center text-base">Talent Musica 2022. All rights reserved.</p>
+      <p className="text-white text-center text-base">Talent Musica 2023. All rights reserved.</p>
     </div>
   </div>
 );

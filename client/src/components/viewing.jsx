@@ -51,7 +51,7 @@ export default function ViewFile() {
   async function Claim() {
     navigate("/dashboard");
   }
-  const rpcUrl = "https://rpc.testnet.mantle.xyz/";
+  const rpcUrl = "https://testnet.aurora.dev";
   // const rpcUrl = "localhost";
 
   async function loadMusic() {
@@ -89,7 +89,7 @@ export default function ViewFile() {
   if (loadingState === "loaded" && !nfts.length) {
     return (
       <div>
-        <h1 className="px-20 py-10 text-3xl">You have not selected anybook to read</h1>
+        <h1 className="px-20 py-10 text-3xl">You have not selected any music</h1>
       </div>
     );
   }

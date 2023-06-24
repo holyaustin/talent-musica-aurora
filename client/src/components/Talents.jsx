@@ -23,14 +23,14 @@ export default function Talents() {
     return ipfsGateWayURL;
   };
 
-  const rpcUrl = "https://rpc.testnet.mantle.xyz/";
+  const rpcUrl = "https://testnet.aurora.dev";
   // const rpcUrl = "http://localhost:8545";
 
   async function loadTalent() {
     /* create a generic provider and query for Talents */
     const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
     const contract = new ethers.Contract(talentMusicaAddress, Talent.abi, provider);
-    const data = await contract.fetchMarketItems();
+    const data = await contract.fetchAllValidMarketItems();
 
     console.log("Talent data fetched from contract", data);
     /*
