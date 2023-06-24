@@ -22,6 +22,7 @@ contract Talent is ERC721URIStorage {
       address payable artiste;
       address payable owner;
       bool contacted;
+      bool infringement;
     }
 
     struct Watched {
@@ -35,7 +36,8 @@ contract Talent is ERC721URIStorage {
       uint256 indexed tokenId,
       address artiste,
       address owner,
-      bool contacted
+      bool contacted,
+      bool infringement
     );
 
     event ViewCreated (
@@ -69,6 +71,7 @@ contract Talent is ERC721URIStorage {
         tokenId,
         payable(msg.sender),
         payable(address(this)),
+        false,
         false
       );
 
@@ -77,6 +80,7 @@ contract Talent is ERC721URIStorage {
         tokenId,
         msg.sender,
         address(this),
+        false,
         false
       );
     }
@@ -84,8 +88,16 @@ contract Talent is ERC721URIStorage {
     /* Creates the sale of a marketplace item */
     function createMarketSale(
       uint256 tokenId
-      ) public payable {
+      ) public {
       idToMarketItem[tokenId].contacted = true;
+       
+    }
+
+    /* Report infringement of music item */
+    function reportItem(
+      uint256 tokenId
+      ) public onlyOwner {
+      idToMarketItem[tokenId].infringement = true;
        
     }
 
@@ -115,7 +127,7 @@ contract Talent is ERC721URIStorage {
 
       Watched[] memory items = new Watched[](unsoldItemCount);
       for (uint i = 0; i < itemCount; i++) {
-        if (idToViewItem[i + 1].ownerAdd == address(this)) {
+        if ((idToViewItem[i + 1].ownerAdd == address(this)) && (idToViewItem[i + 1].infringement == false)) {
           uint currentId = i + 1;
          Watched storage currentItem = idToViewItem[currentId];
           items[currentIndex] = currentItem;
@@ -150,6 +162,7 @@ contract Talent is ERC721URIStorage {
       //createView(_tokenId);
       return items;
     }
+
 
   // get total view
   function getTotalViews() public view returns (uint256) {
