@@ -60,7 +60,9 @@ Live Dapp - <https://talent-musica-aurora.vercel.app/>
 
 Deployed to Aurora: [0xfBeFdC343861EDc521dD2512B4B64B33bB663E4d](https://explorer.testnet.mantle.xyz/address/0xfBeFdC343861EDc521dD2512B4B64B33bB663E4d)
 
+Lido Stake: <https://bos.gg/#/adcf7a2b7aa3838071e432721b12eee5f2412e27fcfeed56ade28b0710912d95/widget/Lido_Stake>
 
+ERC20 Sender: <https://bos.gg/#/adcf7a2b7aa3838071e432721b12eee5f2412e27fcfeed56ade28b0710912d95/widget/erc20-sender>
 
 ## Connect with me and send me a mail
 
