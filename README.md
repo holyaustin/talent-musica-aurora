@@ -12,7 +12,9 @@ Our goal is to harness the power of blockchain (through decentralizatin) in musi
 
 To put it candidly, data privacy today is a mess. Perhaps the biggest problem currently plaguing data privacy in Web2 is centralization. The corporate entities governing digital transactions and interactions do not always take the most ethical routes when conducting business, much to the chagrin of the general public and in-the-know techies alike. A 2021 poll showed that 80% of Americans are concerned about how companies are using their data, and recent scandals like Facebook-Cambridge Analytica have further proven that centralized authorities can rarely be relied upon.
 
-This project is a Hackathon project sponsored by DevPost - Spheron dAppAthon. The project aims to create an on-chain music Dapp where young music talents can upload their creation and mint it to the talent marketplace as Video NFTs. If users like the music, such artists can be contacted on their Twitter handles. Producers and Managers who look at the work of any upcoming artiste/talent can get the talent and sign a contract with him/ her.
+This project is a Hackathon project sponsored by Encode x Aurora Hackathon. The project aims to create an on-chain music Dapp where young music talents can upload their creation (that are not duplicated or violet copyright laws) and mint it to the talent marketplace as Video NFTs. If users like the music, such artists can be contacted on their Twitter handles or through the wallet chat (XMTP). Producers and Managers who like the creation of any upcoming artiste/talent can get in contact with the talent and sign a contract with him/ her.
+
+Zero Knowlwdge proof (ZKP) help to preserve and protect details of artiste and their work.
 
 ![Talent Musica](https://bafybeibuagnt726vfndkbbwwiingiy45ivmmspoh4omq5gvut5tuyteyki.ipfs.nftstorage.link/)
 
@@ -47,8 +49,8 @@ A platform of trust and privacy preserving talent's work through the integration
 
 ## Web 3.0 technologies Used
 
-Frontend: vite + react.js, postcss, tailwindcss,
-web3 technologies:  IPFS/filecoin, LivePeer, ethers.js, PolyBase, Biconomy
+Frontend: vite + react.js, postcss, tailwindcss, BOS Frontend Component
+web3 technologies:  IPFS/filecoin, LivePeer, ethers.js, PolyBase, BOS
 Backend: Solidity, Node.js
 BlockChain: Aurora Testnet
 
@@ -57,6 +59,8 @@ BlockChain: Aurora Testnet
 Live Dapp - <https://talent-musica-aurora.vercel.app/>
 
 Deployed to Aurora: [0xfBeFdC343861EDc521dD2512B4B64B33bB663E4d](https://explorer.testnet.mantle.xyz/address/0xfBeFdC343861EDc521dD2512B4B64B33bB663E4d)
+
+
 
 ## Connect with me and send me a mail
 
